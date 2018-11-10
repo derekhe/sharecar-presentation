@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1024" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic"
+    rel="stylesheet" />
+  <link href="css/impress-demo.css" rel="stylesheet" />
+  <script src="libs/lodash.min.js"></script>
+  <script src="constants.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM&services=&t=20180201111639"></script>
+  <script type="text/javascript" src="http://echarts.baidu.com/examples/vendors/echarts/extension/bmap.js?_v_=1519710853840"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=edpTD0estvF7xjyFZ1Vda9Nme7Kif0k7"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/CurveLine/1.5/src/CurveLine.min.js"></script>
+  <script type="text/javascript" src="libs/moment-with-locales.min.js"></script>
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65480915" charset="UTF-8"></script>
+</head>
+
+<body class="impress-not-supported">
+  <div id="impress">
+    <div class="step" data-x="0" data-y="0">
+      <p style="font-size:90px; font-weight: bolder">大数据看共享汽车</p>
+      <p>从数据抓取到数据分析</p>
+    </div>
+
+
+    <div class="step" data-x="0" data-y="600">
+      <p style="font-size: 60px; font-weight: bolder">静态的快照</p>
+      <ul style="font-size: 30px; font-weight: bolder">
+        <li>车型</li>
+        <li>牌照</li>
+        <li>车辆位置</li>
+        <li>剩余能源</li>
+        <li>公里数</li>
+      </ul>
+    </div>
+
+    <div class="step" data-x="1000" data-y="0">
+      <img height='640' src="./pic/evcard.jpeg" />
+    </div>
+    <div class="step" data-x="1300" data-y="0">
+      <img height='640' src="./pic/gofun.jpeg" />
+    </div>
+    <div class="step" data-x="1600" data-y="0">
+      <img height='640' src="./pic/like.jpeg" />
+    </div>
+
+    <div class="step" data-x="1800" data-y="600">
+      asdf
+    </div>
+
+  </div>
+
+  <div id="impress-toolbar"></div>
+
+  <div class="hint">
+    <p>Use a spacebar or arrow keys to navigate. <br />
+      Press 'P' to launch speaker console.</p>
+  </div>
+  <script>
+    if ("ontouchstart" in document.documentElement) {
+      document.querySelector(".hint").innerHTML = "<p>Swipe left or right to navigate</p>";
+    }
+
+  </script>
+  <script src="js/impress.js"></script>
+  <script>
+    impress().init();
+
+  </script>
+</body>
+
+</html>
