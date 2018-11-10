@@ -8,8 +8,10 @@
   <link href="//fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic"
     rel="stylesheet" />
   <link href="css/impress-demo.css" rel="stylesheet" />
+  <link href="css/report.css" rel="stylesheet" />
+  <link href="css/github.css" rel="stylesheet" />
   <script src="libs/lodash.min.js"></script>
-  <script src="constants.js"></script>
+  <script src="js/constants.js"></script>
   <script src="libs/echarts.min.js"></script>
   <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM&services=&t=20180201111639"></script>
   <script type="text/javascript" src="http://echarts.baidu.com/examples/vendors/echarts/extension/bmap.js?_v_=1519710853840"></script>
@@ -17,41 +19,929 @@
   <script type="text/javascript" src="http://api.map.baidu.com/library/CurveLine/1.5/src/CurveLine.min.js"></script>
   <script type="text/javascript" src="libs/moment-with-locales.min.js"></script>
   <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65480915" charset="UTF-8"></script>
+  <script>
+    themeName = 'default';
+  </script>
 </head>
 
 <body class="impress-not-supported">
   <div id="impress">
-    <div class="step" data-x="0" data-y="0">
+
+    <div class="step" data-x="0" data-y="0" data-z="-3000" data-scale="10" data-rotate-x="45">
       <p style="font-size:90px; font-weight: bolder">大数据看共享汽车</p>
-      <p>从数据抓取到数据分析</p>
+    </div>
+
+    <div class="step" data-y="1000" data-rel-y="600">
+      <p style="font-size: 160px; font-weight: bolder">静态的快照</p>
+      <div style="font-size: 30px; font-weight: bolder">
+        <p>车型、号牌、车辆位置、剩余油量/电量、公里数、价格……</p>
+      </div>
+    </div>
+
+    <div class="step" data-rel-x="-300" data-rel-y="300" data-scale="0.2">
+      <img height='640' src="./pic/evcard.jpeg" style="text-align:center;" />
+    </div>
+
+    <div class="step" data-rel-x="100" data-rel-y="0" data-scale="0.2">
+      <pre style="font-size:12px"><code>
+          {
+                "shopSeq": 1212,
+                "shopName": "外高桥发展大厦",
+                "areaCode": "31000",
+                "vin": "LSJA24065HS129330",
+                "vehicleNo": "沪ADXXXXX",
+                "vehicleModelSeq": 188,
+                "vehicleModelName": "荣威ERX5",
+                "soc": 61,
+                "oil": -1,
+                "serviceStatus": 0,
+                "canRent": 1,
+                "approvedSeats": 5,
+                "drivingRange": 195,
+                "status": 0,
+                "bugDate": null,
+                "disinfectDate": "20181028",
+                "mileage": 59986,
+                "bodyColor": 0,
+                "priceDesc": null,
+                "priceNum": "1.3,323",
+                "priceStr": "%s元/分钟 或%s元/天",
+                "oprerationOrgId": "000T",
+                "isDisplayInsurance": 1,
+                "isForceInsurance": 0,
+                "isDisplayCross": 0,
+                "fuelMaxMileage": 0,
+                "latitude": 31342635,
+                "longitude": 121587697,
+                "isActivity": 0,
+                "activityImg": null,
+                "vehicleType": 0,
+                "oilDrivingRange": 0,
+                "totalDrivingRange": 0,
+                "isNightCar": 1,
+                "nightCarDesc": "17:00-次日09:00(超时整单无包夜优惠)",
+                "nightCarPrice": 180,
+                "isDisplayDriverInsurance": 0,
+                "activityType": 0,
+                "activityRewardInfoDesc": null,
+                "isNewActivity": 0
+            }
+            </code></pre>
+    </div>
+
+    <div class="step" data-rel-x="200" data-rel-y="0" data-scale="0.2">
+      <table border=1 style="font-size:10px; background: white; width: 800px; height:600px;">
+        <tbody>
+          <tr>
+            <td align="right">2</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.51372,28.594135)</td>
+            <td align="right">90</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>亿利达滨海厂区</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">140</td>
+            <td>1</td>
+            <td>2018-10-08 16:48:20.000000</td>
+          </tr>
+          <tr>
+            <td align="right">3</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432083,28.646674)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 17:14:46.000000</td>
+          </tr>
+          <tr>
+            <td align="right">4</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432083,28.646674)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 17:46:48.000000</td>
+          </tr>
+          <tr>
+            <td align="right">5</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432121,28.646581)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 18:14:38.000000</td>
+          </tr>
+          <tr>
+            <td align="right">6</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432121,28.646581)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 18:42:33.000000</td>
+          </tr>
+          <tr>
+            <td align="right">7</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432121,28.646581)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 19:08:28.000000</td>
+          </tr>
+          <tr>
+            <td align="right">8</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432136,28.64686)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 19:38:21.000000</td>
+          </tr>
+          <tr>
+            <td align="right">9</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432136,28.64686)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 20:06:04.000000</td>
+          </tr>
+          <tr>
+            <td align="right">10</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432105,28.646629)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 20:34:06.000000</td>
+          </tr>
+          <tr>
+            <td align="right">11</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432105,28.646629)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 21:01:26.000000</td>
+          </tr>
+          <tr>
+            <td align="right">12</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432109,28.646599)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 21:30:54.000000</td>
+          </tr>
+          <tr>
+            <td align="right">13</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432109,28.646599)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 22:02:35.000000</td>
+          </tr>
+          <tr>
+            <td align="right">14</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432151,28.646726)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 22:33:58.000000</td>
+          </tr>
+          <tr>
+            <td align="right">15</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432151,28.646726)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 23:02:53.000000</td>
+          </tr>
+          <tr>
+            <td align="right">16</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.431979,28.646916)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 23:29:45.000000</td>
+          </tr>
+          <tr>
+            <td align="right">17</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.431979,28.646916)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-08 23:56:07.000000</td>
+          </tr>
+          <tr>
+            <td align="right">18</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432064,28.646661)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-09 00:21:37.000000</td>
+          </tr>
+          <tr>
+            <td align="right">19</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.432064,28.646661)</td>
+            <td align="right">81</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州银行金融培训学校</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">126</td>
+            <td>0</td>
+            <td>2018-10-09 00:47:50.000000</td>
+          </tr>
+          <tr>
+            <td align="right">20</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419979,28.656793)</td>
+            <td align="right">62</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">96</td>
+            <td>1</td>
+            <td>2018-10-09 04:58:51.000000</td>
+          </tr>
+          <tr>
+            <td align="right">21</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419946,28.656783)</td>
+            <td align="right">70</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">109</td>
+            <td>1</td>
+            <td>2018-10-09 05:25:44.000000</td>
+          </tr>
+          <tr>
+            <td align="right">22</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419946,28.656783)</td>
+            <td align="right">70</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">109</td>
+            <td>1</td>
+            <td>2018-10-09 05:42:36.000000</td>
+          </tr>
+          <tr>
+            <td align="right">23</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419616,28.656348)</td>
+            <td align="right">80</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">124</td>
+            <td>1</td>
+            <td>2018-10-09 06:08:46.000000</td>
+          </tr>
+          <tr>
+            <td align="right">24</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419616,28.656348)</td>
+            <td align="right">84</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">131</td>
+            <td>1</td>
+            <td>2018-10-09 06:37:40.000000</td>
+          </tr>
+          <tr>
+            <td align="right">25</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419918,28.656798)</td>
+            <td align="right">100</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">156</td>
+            <td>1</td>
+            <td>2018-10-09 07:16:49.000000</td>
+          </tr>
+          <tr>
+            <td align="right">26</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419918,28.656798)</td>
+            <td align="right">100</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">156</td>
+            <td>1</td>
+            <td>2018-10-09 07:50:38.000000</td>
+          </tr>
+          <tr>
+            <td align="right">27</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419785,28.656991)</td>
+            <td align="right">100</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">156</td>
+            <td>1</td>
+            <td>2018-10-09 08:24:19.000000</td>
+          </tr>
+          <tr>
+            <td align="right">28</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.419785,28.656991)</td>
+            <td align="right">100</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>台州市总工会</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">156</td>
+            <td>1</td>
+            <td>2018-10-09 08:48:20.000000</td>
+          </tr>
+          <tr>
+            <td align="right">29</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442416,28.682356)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 09:48:34.000000</td>
+          </tr>
+          <tr>
+            <td align="right">30</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442391,28.682321)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 10:45:45.000000</td>
+          </tr>
+          <tr>
+            <td align="right">31</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442391,28.682321)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 11:21:44.000000</td>
+          </tr>
+          <tr>
+            <td align="right">32</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442208,28.682435)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 11:59:49.000000</td>
+          </tr>
+          <tr>
+            <td align="right">33</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442364,28.682331)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 12:33:08.000000</td>
+          </tr>
+          <tr>
+            <td align="right">34</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442364,28.682331)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 13:01:14.000000</td>
+          </tr>
+          <tr>
+            <td align="right">35</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442431,28.682355)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 13:31:10.000000</td>
+          </tr>
+          <tr>
+            <td align="right">36</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442431,28.682355)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 14:06:45.000000</td>
+          </tr>
+          <tr>
+            <td align="right">37</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442413,28.682375)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 14:46:49.000000</td>
+          </tr>
+          <tr>
+            <td align="right">38</td>
+            <td>331002</td>
+            <td>浙JW4L45</td>
+            <td>(121.442413,28.682375)</td>
+            <td align="right">96</td>
+            <td>北汽EC180</td>
+            <td align="right">4</td>
+            <td>椒江剧院</td>
+            <td align="right">0.5</td>
+            <td align="right">103</td>
+            <td align="right">149</td>
+            <td>1</td>
+            <td>2018-10-09 15:28:47.000000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step" data-rel-x="200" data-scale="0.2">
+      <table border=1 style="font-size:10px; background: white; width: 800px; height:600px;">
+        <tbody>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-11 22:16:13</td>
+            <td>2018-09-11 23:07:14</td>
+            <td align="right">51.016666666666666</td>
+            <td align="right">51.016666666666666</td>
+            <td>青白江派酒店</td>
+            <td>青白江派酒店</td>
+            <td align="right">93</td>
+            <td align="right">93.0</td>
+            <td align="right">0.0</td>
+            <td align="right">26525</td>
+            <td align="right">1.0</td>
+            <td align="right">-26524.0</td>
+            <td>False</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">25.508333333333333</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-11 23:07:14</td>
+            <td>2018-09-12 09:24:22</td>
+            <td align="right">617.133333333333326</td>
+            <td align="right">0.000000000000000</td>
+            <td>青白江派酒店</td>
+            <td>东方丽景广场</td>
+            <td align="right">93</td>
+            <td align="right">64.0</td>
+            <td align="right">-29.0</td>
+            <td align="right">1</td>
+            <td align="right">1.0</td>
+            <td align="right">0.0</td>
+            <td>True</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">0.000000000000000</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-12 09:24:22</td>
+            <td>2018-09-12 21:49:39</td>
+            <td align="right">745.283333333333303</td>
+            <td align="right">745.283333333333303</td>
+            <td>东方丽景广场</td>
+            <td>汉城假日酒店</td>
+            <td align="right">64</td>
+            <td align="right">89.0</td>
+            <td align="right">25.0</td>
+            <td align="right">1</td>
+            <td align="right">26850.0</td>
+            <td align="right">26849.0</td>
+            <td>False</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">372.641666666666652</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-12 21:49:39</td>
+            <td>2018-09-13 11:22:08</td>
+            <td align="right">812.483333333333348</td>
+            <td align="right">0.000000000000000</td>
+            <td>汉城假日酒店</td>
+            <td>汉城假日酒店</td>
+            <td align="right">89</td>
+            <td align="right">100.0</td>
+            <td align="right">11.0</td>
+            <td align="right">26850</td>
+            <td align="right">26850.0</td>
+            <td align="right">0.0</td>
+            <td>True</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">0.000000000000000</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-13 11:22:08</td>
+            <td>2018-09-13 11:57:24</td>
+            <td align="right">35.266666666666666</td>
+            <td align="right">35.266666666666666</td>
+            <td>汉城假日酒店</td>
+            <td>汉城假日酒店</td>
+            <td align="right">100</td>
+            <td align="right">100.0</td>
+            <td align="right">0.0</td>
+            <td align="right">26850</td>
+            <td align="right">11.0</td>
+            <td align="right">-26839.0</td>
+            <td>False</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">17.633333333333333</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-13 11:57:24</td>
+            <td>2018-09-13 14:02:29</td>
+            <td align="right">125.083333333333329</td>
+            <td align="right">0.000000000000000</td>
+            <td>汉城假日酒店</td>
+            <td>汉城假日酒店</td>
+            <td align="right">100</td>
+            <td align="right">100.0</td>
+            <td align="right">0.0</td>
+            <td align="right">11</td>
+            <td align="right">11.0</td>
+            <td align="right">0.0</td>
+            <td>True</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">0.000000000000000</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-13 14:02:29</td>
+            <td>2018-09-13 14:55:33</td>
+            <td align="right">53.066666666666670</td>
+            <td align="right">53.066666666666670</td>
+            <td>汉城假日酒店</td>
+            <td>汉城假日酒店</td>
+            <td align="right">100</td>
+            <td align="right">100.0</td>
+            <td align="right">0.0</td>
+            <td align="right">11</td>
+            <td align="right">26850.0</td>
+            <td align="right">26839.0</td>
+            <td>False</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">26.533333333333335</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-13 14:55:33</td>
+            <td>2018-09-15 22:54:17</td>
+            <td align="right">3358.733333333333121</td>
+            <td align="right">0.000000000000000</td>
+            <td>汉城假日酒店</td>
+            <td>国泉菜市（东山店）</td>
+            <td align="right">100</td>
+            <td align="right">83.0</td>
+            <td align="right">-17.0</td>
+            <td align="right">26850</td>
+            <td align="right">26850.0</td>
+            <td align="right">0.0</td>
+            <td>True</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">0.000000000000000</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-15 22:54:17</td>
+            <td>2018-09-16 00:44:20</td>
+            <td align="right">110.049999999999997</td>
+            <td align="right">110.049999999999997</td>
+            <td>国泉菜市（东山店）</td>
+            <td>国泉菜市（东山店）</td>
+            <td align="right">83</td>
+            <td align="right">100.0</td>
+            <td align="right">17.0</td>
+            <td align="right">26850</td>
+            <td align="right">27000.0</td>
+            <td align="right">150.0</td>
+            <td>False</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">55.024999999999999</td>
+          </tr>
+          <tr>
+            <td>川A5U0N1</td>
+            <td>2018-09-16 00:44:20</td>
+            <td>2018-09-17 23:53:25</td>
+            <td align="right">2829.083333333333485</td>
+            <td align="right">0.000000000000000</td>
+            <td>国泉菜市（东山店）</td>
+            <td>喜馆精品酒店</td>
+            <td align="right">100</td>
+            <td align="right">100.0</td>
+            <td align="right">0.0</td>
+            <td align="right">27000</td>
+            <td align="right">27000.0</td>
+            <td align="right">0.0</td>
+            <td>True</td>
+            <td align="right">0.5</td>
+            <td>北汽EC180</td>
+            <td align="right">0.000000000000000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step" data-rel-x="300" data-rel-y="-50" data-scale="0.2">
+      <p style="font-size: 120px">车辆基本信息</p>
+    </div>
+
+    <div class="step" data-rel-x="-50" data-rel-y="80" data-scale="0.2">
+      <div id="car_type" class="basic-info"></div>
+      <script src="./js/car_type.js"></script>
+    </div>
+
+    <div class="step" data-rel-x="50" data-rel-y="0" data-scale="0.2">
+      <div id="brands" class="basic-info"></div>
+      <script src="./js/brands.js"></script>
+    </div>
+
+    <div class="step" data-scale="0.2">
+      <div id="seats" class="basic-info"></div>
+      <script src="./js/seats.js"></script>
+    </div>
+
+    <div class="step" data-scale="0.2">
+      <div id="years" class="basic-info"></div>
+      <script src="./js/years.js"></script>
+    </div>
+
+    <div class="step" data-rel-x="-200" data-rel-y="600" style="font-size:120px; font-weight: bolder">
+      <p>基础运营分析</p>
+    </div>
+
+    <div class="step" data-rel-y="1000" data-rel-x="1000" data-rel-z="-1000" data-rotate-z="10">
+      <p class="center" style="font-size: 60px">车辆增长</p>
+      <div class="center">
+        <div id="car_increase" style="width: 800px;height:400px;"></div>
+        <script src="./js/car_increase.js"></script>
+      </div>
+    </div>
+
+    <div class="step" data-rel-x="900" data-rel-y="0" data-rel-z="0" data-rotate-z="20">
+      <p class="center" style="font-size: 60px">车辆分布</p>
+      <div id="distribution" style="width: 800px;height:400px;"></div>
+      <script src="./js/distribution.js"></script>
+    </div>
+
+    <div class="step" data-rotate-z="40">
+      <p class="center" style="font-size: 60px">停车场分布</p>
+      <div id="park_distribution" style="width: 800px;height:400px;"></div>
+      <script src="./js/park_distribution.js"></script>
     </div>
 
 
-    <div class="step" data-x="0" data-y="600">
-      <p style="font-size: 60px; font-weight: bolder">静态的快照</p>
-      <ul style="font-size: 30px; font-weight: bolder">
-        <li>车型</li>
-        <li>牌照</li>
-        <li>车辆位置</li>
-        <li>剩余能源</li>
-        <li>公里数</li>
-      </ul>
+    <div class="step" data-rotate-z="30">
+      <p class="center" style="font-size: 60px">停车场散点图</p>
+      <div id="park_locations" style="width: 800px;height:400px;"></div>
+      <script src="./js/park_locations.js"></script>
     </div>
 
-    <div class="step" data-x="1000" data-y="0">
-      <img height='640' src="./pic/evcard.jpeg" />
-    </div>
-    <div class="step" data-x="1300" data-y="0">
-      <img height='640' src="./pic/gofun.jpeg" />
-    </div>
-    <div class="step" data-x="1600" data-y="0">
-      <img height='640' src="./pic/like.jpeg" />
+
+    <div class="step">
+      <p class="center" style="font-size: 60px">停车场拥挤分析</p>
+      <div id="average_cars_per_park" style="width: 800px;height:400px;"></div>
+      <script src="./js/average_cars_per_park.js"></script>
     </div>
 
-    <div class="step" data-x="1800" data-y="600">
-      asdf
+    <div class="step" data-rel-x="-4700" data-rel-y="1200" style="font-size:90px; font-weight: bolder">
+      <p>根据每台车每天所处的位置，可以得到运营的效率的统计数据</p>
     </div>
 
+    <div class="step" data-rel-x="0" data-rel-y="300" data-scale="0.5">
+      <div id="num_of_parkings" style="width: 900px;height:300px;"></div>
+      <script src="./js/num_of_parkings.js"></script>
+    </div>
+
+    <div class="step" data-rel-y="150" data-scale="0.5">
+      <div id="parking_hist" style="width: 900px;height:300px;"></div>
+      <script src="./js/parking_hist.js"></script>
+    </div>
+
+    <div class="step" data-scale="0.5">
+      <div id="using_hist" style="width: 900px;height:300px;"></div>
+      <script src="./js/using_hist.js"></script>
+    </div>
+
+    <div class="step" data-rel-x="0" data-rel-y="600" style="font-size:90px; font-weight: bolder">
+      <p>也可以详细的跟踪每台车的状态</p>
+    </div>
+
+    <div class="step" data-rel-y="600" data-rel-x="0" data-rotate-x="45">
+      <div style="width:100%;height:600px;border:1px solid gray" id="container"></div>
+      <script type="text/javascript" src="./js/car_movement.js"></script>
+    </div>
+
+    <div class="step">
+      <div id="battery_parking" style="width: 100%;height:300px;"></div>
+      <script src="./js/battery_parking.js"></script>
+    </div>
   </div>
 
   <div id="impress-toolbar"></div>
@@ -64,13 +954,12 @@
     if ("ontouchstart" in document.documentElement) {
       document.querySelector(".hint").innerHTML = "<p>Swipe left or right to navigate</p>";
     }
-
   </script>
-  <script src="js/impress.js"></script>
+  <script src="./libs/impress.js"></script>
+  <script type="text/javascript" src="./libs/highlight.pack.js"></script>
   <script>
     impress().init();
-
   </script>
 </body>
 
-</html>
+</html

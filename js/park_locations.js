@@ -3,22 +3,18 @@ fetch("./analysis/park_locations.json")
     return d.json()
   }).then((d) => {
   const data = d.map((i) => {
-    return {name: i.parking_name, value: [i.lat, i.lon]};
+    return {name: i.parking_name, value: [i.location[0], i.location[1]]};
   });
 
   const myChart = echarts.init(document.getElementById('park_locations'), themeName);
   myChart.setOption(option = {
-    title: {
-      text: '停车场分布',
-      left: 'center'
-    },
     tooltip: {
       trigger: 'item',
       formatter: '{b} {c}'
     },
     bmap: {
-      center: [121.470191, 31.232718],
-      zoom: 12,
+      center: [116.4, 39.9],
+      zoom: 11,
       roam: true,
       mapStyle: {
         styleJson: [
@@ -56,15 +52,13 @@ fetch("./analysis/park_locations.json")
     series: [
       {
         name: 'park',
-        type: 'effectScatter',
+        type: 'scatter',
         coordinateSystem: 'bmap',
+        large: true,
         data: data,
-        showEffectOn: 'emphasis',
         itemStyle: {
           normal: {
             color: "#ee5a34",
-            shadowBlur: 4,
-            shadowColor: '#a6a6a6'
           }
         },
       }

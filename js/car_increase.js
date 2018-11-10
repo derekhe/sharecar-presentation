@@ -11,13 +11,7 @@ fetch("./analysis/car_increase.json")
     return i.date
   });
 
-  console.log(category);
-
   const option = {
-    title: {
-      text: '共享汽车数量增长',
-      left: 'center',
-    },
     xAxis: {
       type: 'category',
       data: category,

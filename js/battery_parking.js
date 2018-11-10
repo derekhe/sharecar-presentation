@@ -1,4 +1,4 @@
-fetch("./analysis/battery_parking_沪HY1692.json")
+fetch("./analysis/battery_parking_川A41F1Z.json")
   .then((d) => {
     return d.json()
   }).then((d) => {

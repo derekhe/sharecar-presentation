@@ -1,20 +1,19 @@
-fetch("./analysis/car_types.json")
+fetch("./analysis/brands.json")
   .then((d) => {
     return d.json()
   }).then((d) => {
-
   const series = d.map((i) => {
-    return {name: i.series, value: i.count};
+    return {name: i.brand, value: i.c};
   });
 
   const x = d.map((i) => {
-    return i.series
+    return i.brand;
   });
 
-  const myChart = echarts.init(document.getElementById('car_type'), themeName);
+  const myChart = echarts.init(document.getElementById('brands'), themeName);
   const option = {
     title: {
-      text: '车型分布',
+      text: '车型品牌分布',
       left: 'center',
     },
     tooltip: {
@@ -22,7 +21,7 @@ fetch("./analysis/car_types.json")
       formatter: "{a} <br/>{b} : {c} ({d}%)"
     },
     series: [{
-      name: '车辆种类',
+      name: '车型品牌分布',
       type: 'pie',
       radius: '40%',
       data: series,
@@ -32,7 +31,8 @@ fetch("./analysis/car_types.json")
           shadowOffsetX: 0,
           shadowColor: 'rgba(0, 0, 0, 0.5)'
         }
-      }}]
+      }
+    }]
   };
 
   myChart.setOption(option);

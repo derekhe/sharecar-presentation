@@ -33,11 +33,6 @@ fetch("./analysis/car_distrubution.json")
     tooltip: {
       trigger: 'item'
     },
-    title: [
-      {
-        text: '车辆数量分布',
-        left: 'center',
-      }],
     grid: {
       backgroundColor: "#FF0000",
       right: 40,
@@ -188,13 +183,13 @@ fetch("./analysis/car_distrubution.json")
           }
         ]
       }
-    },
+    } ,
     series: [{
       type: 'effectScatter',
       coordinateSystem: 'bmap',
       data: convertedData,
       symbolSize: function (val) {
-        return Math.log(val[2]) * 2;
+        return Math.max(val[2] / 60, 8);
       },
       label: {
         normal: {

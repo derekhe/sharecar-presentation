@@ -23,7 +23,6 @@ const CITY_CAPITAL_MAPPING = [
   {"name": "重庆", "abbreviation": "渝", "capital": "重庆"},
   {"name": "四川省", "abbreviation": "川", "capital": "成都"},
   {"name": "贵州省", "abbreviation": "黔", "capital": "贵阳"},
-    {"name": "贵州省", "abbreviation": "贵", "capital": "贵阳"},
   {"name": "云南省", "abbreviation": "云", "capital": "昆明"},
   {"name": "西藏自治区", "abbreviation": "藏", "capital": "拉萨"},
   {"name": "陕西省", "abbreviation": "陕", "capital": "西安"},

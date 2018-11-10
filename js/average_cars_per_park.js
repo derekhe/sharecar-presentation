@@ -8,10 +8,6 @@ fetch("./analysis/average_cars_per_park.json")
 
   const myChart = echarts.init(document.getElementById('average_cars_per_park'), themeName);
   const option = {
-    title: {
-      text: '多少汽车共用一个停车场',
-      left: 'center',
-    },
     grid: {
       bottom: '25%'
     },

@@ -13,10 +13,10 @@ map.setMapStyle({
   ]
 });
 
-map.centerAndZoom(new BMap.Point(104.072335, 30.665017), 12);
+map.centerAndZoom(new BMap.Point(104.072335, 30.665017), 14);
 map.enableScrollWheelZoom();
 
-fetch("./analysis/battery_parking_沪HY1692.json")
+fetch("./analysis/battery_parking_川A41F1Z.json")
   .then((d) => {
     return d.json()
   }).then((d) => {
